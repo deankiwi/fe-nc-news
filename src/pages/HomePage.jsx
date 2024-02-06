@@ -1,9 +1,9 @@
-import { NewsList } from "./NewsList";
+import { NewsList } from "../components/NewsList";
 
 export function HomePage() {
   return (
     <section>
-      <h1>HomePage</h1>
+      <h1>Homepage</h1>
       <NewsList />
     </section>
   );
