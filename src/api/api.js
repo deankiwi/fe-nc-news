@@ -1,6 +1,15 @@
-// import articleSampleDate from "./sampleData/articleSampleData.json";
-import sampleArticleData from "./sampleData/articleSampleData.json";
+import axios from "axios";
+// import sampleArticleData from "./sampleData/articleSampleData.json";
 
 export function getArticles() {
-  return sampleArticleData.articles;
+  return axios("https://nc-news-server-ccze.onrender.com/api/articles")
+  .then((response) => {
+
+    return response.data.articles
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
+
+
