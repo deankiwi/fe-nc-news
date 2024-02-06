@@ -19,7 +19,6 @@ export function NewsList() {
         setIsLoadingArticles(false);
       })
       .catch((err) => {
-        console.log(err, "<--- in catch");
         setIsLoadingArticles(false);
         setError(err);
       });
