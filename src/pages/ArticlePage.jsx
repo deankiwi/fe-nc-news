@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Loading } from "../components/Loading";
+import { ErrorComponent } from "../components/ErrorComponent";
 import { getArticle } from "../api/api";
 import { Article } from "../components/Article";
+import { CommentsList } from "../components/CommentsList";
+
+//TODO move some of the functionality of getting the article to the components folder
 
 export function ArticlePage() {
   const { article_id } = useParams();
@@ -27,10 +31,13 @@ export function ArticlePage() {
   }
 
   return (
-    <article>
-      <h2>Article</h2>
-      <Loading isLoading={isLoadingArticle} loadingDescription="article" />
-      {!isLoadingArticle && <Article article={article} />}
-    </article>
+    <div>
+      <article>
+        <h2>Article</h2>
+        <Loading isLoading={isLoadingArticle} loadingDescription="article" />
+        {!isLoadingArticle && <Article article={article} />}
+      </article>
+      <CommentsList article_id={article_id} />
+    </div>
   );
 }
