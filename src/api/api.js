@@ -1,7 +1,11 @@
 import axios from "axios";
 
+const ncNewsApi = axios.create({
+  baseURL: "https://nc-news-server-ccze.onrender.com/api",
+});
+
 export function getArticles() {
-  return axios("https://nc-news-server-ccze.onrender.com/api/articles")
+  return ncNewsApi("/articles")
     .then((response) => {
       return response.data.articles;
     })
@@ -11,9 +15,7 @@ export function getArticles() {
     });
 }
 export function getArticle(article_id) {
-  return axios(
-    `https://nc-news-server-ccze.onrender.com/api/articles/${article_id}`
-  )
+  return ncNewsApi(`/articles/${article_id}`)
     .then((response) => {
       return response.data.articles;
     })
@@ -24,9 +26,7 @@ export function getArticle(article_id) {
 }
 
 export function fetchComments({ article_id }) {
-  return axios(
-    `https://nc-news-server-ccze.onrender.com/api/articles/${article_id}/comments`
-  )
+  return ncNewsApi(`/articles/${article_id}/comments`)
     .then((response) => {
       return response.data;
     })
