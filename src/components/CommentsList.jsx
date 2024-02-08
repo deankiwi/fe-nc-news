@@ -9,7 +9,7 @@ import { sortByKey } from "../utils/sortArray";
 
 export function CommentsList({ article_id }) {
   const { data, status } = useQuery(["comments", article_id], () => {
-    return fetchComments({ article_id });
+    return fetchComments(article_id);
   });
 
   return (

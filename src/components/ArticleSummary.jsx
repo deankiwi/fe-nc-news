@@ -25,6 +25,9 @@ export function ArticleSummary({ article }) {
           <small className="text-muted">Topic: {article.topic}</small>
         </div>
         <div>
+          <small className="text-muted">Votes: {article.votes}</small>
+        </div>
+        <div>
           <small className="text-muted">
             {utcToDayMonthYear(article.created_at)}
           </small>

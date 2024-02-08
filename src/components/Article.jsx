@@ -1,5 +1,6 @@
 import { Row, Col, Card } from "react-bootstrap";
 import { utcToDayMonthYear } from "../utils/timeFormatter";
+import { VoteArticle } from "./VoteArticle";
 
 export function Article({ article }) {
   return (
@@ -30,6 +31,10 @@ export function Article({ article }) {
                   {utcToDayMonthYear(article.created_at)}
                 </small>
               </div>
+              <VoteArticle
+                votes={article.votes}
+                article_id={article.article_id}
+              />
             </Card.Footer>
           </Col>
         </Row>
