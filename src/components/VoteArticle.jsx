@@ -2,9 +2,6 @@ import { useState } from "react";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { patchArticleVote } from "../api/api";
 
-//TODO add in call to API to change votes
-//TODO add in error message if call fails and reset there vote
-
 export function VoteArticle({ votes, article_id }) {
   const [currentVotes, setCurrentVotes] = useState(votes);
   const [userVote, setUserVote] = useState(0);
@@ -13,18 +10,15 @@ export function VoteArticle({ votes, article_id }) {
 
   function updateVote(vote) {
     //check if vote has already been made and if so remove it
-    setVoteFailed(false)
+    setVoteFailed(false);
     setVoteBeingSubmitted(true);
     if (userVote === vote) {
       setCurrentVotes(currentVotes - vote);
-      //TODO API CALL TO CHANGE VOTE by vote
       setUserVote(0);
       updateVoteOnServer(article_id, -vote);
     } else {
       setCurrentVotes(currentVotes + vote - userVote);
-      //TODO API CALL TO CHANGE VOTE by vote
       setUserVote(vote);
-      //flip updateVote
       updateVoteOnServer(article_id, vote - userVote);
     }
   }
@@ -40,35 +34,34 @@ export function VoteArticle({ votes, article_id }) {
           setUserVote(inc_votes);
         }
         setVoteBeingSubmitted(false);
-        setVoteFailed(true)
-        console.log("VOTE FAILED");
+        setVoteFailed(true);
+  
       })
       .finally(() => setVoteBeingSubmitted(false));
   }
 
   return (
     <>
-    
-    <div>
-      <ButtonGroup size="sm" aria-label="Basic example">
-        <Button
-          disabled={voteBeingSubmitted}
-          onClick={() => updateVote(1)}
-          variant={userVote === 1 ? "success" : "light"}
-        >
-          👍
-        </Button>
-        <Button
-          disabled={voteBeingSubmitted}
-          onClick={() => updateVote(-1)}
-          variant={userVote === -1 ? "danger" : "light"}
-        >
-          👎
-        </Button>
-      </ButtonGroup>{" "}
-      <small className="text-muted">{currentVotes}</small>
-    </div>
-      {voteFailed && <small style={{ color: 'red' }}>ERROR</small>}
+      <div>
+        <ButtonGroup size="sm" aria-label="Basic example">
+          <Button
+            disabled={voteBeingSubmitted}
+            onClick={() => updateVote(1)}
+            variant={userVote === 1 ? "success" : "light"}
+          >
+            👍
+          </Button>
+          <Button
+            disabled={voteBeingSubmitted}
+            onClick={() => updateVote(-1)}
+            variant={userVote === -1 ? "danger" : "light"}
+          >
+            👎
+          </Button>
+        </ButtonGroup>{" "}
+        <small className="text-muted">{currentVotes}</small>
+      </div>
+      {voteFailed && <small style={{ color: "red" }}>ERROR</small>}
     </>
   );
 }
