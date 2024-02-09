@@ -47,3 +47,15 @@ export function patchArticleVote(article_id, inc_votes) {
       return Promise.reject(error);
     });
 }
+
+export function postComment(article_id, username, body) {
+  return ncNewsApi
+    .post(`/articles/${article_id}/comments`, { username, body })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
+}
