@@ -20,7 +20,7 @@ export function CommentsList({ article_id }) {
     return fetchComments(article_id);
   });
   const [userComments, setUserComments] = useState([]);
-  const [userCommentChecked, setUserCommentChecked] =   useState([]);
+  const [userCommentChecked, setUserCommentChecked] = useState([]);
   const [userCommentFailed, setUserCommentFailed] = useState([]);
   return (
     <div className="comment">
@@ -75,7 +75,7 @@ function SubmittedComment({ children, boxColour }) {
   return (
     <div className={`bg-${boxColour} p-2 border-primary`}>
       {children}
-      {boxColour === "danger" && <Alert>Failed to send</Alert>}
+      <div>{boxColour === "danger" && <Alert>Failed to send</Alert>}</div>
     </div>
   );
 }
