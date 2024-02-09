@@ -8,8 +8,9 @@ export function sortByKey(objectsArray, key , ascending = true) {
       if (typeof valueA === 'string' && typeof valueB === 'string') {
         valueA = valueA.toLowerCase();
         valueB = valueB.toLowerCase();
+        return ascending ? valueA.localeCompare(valueB): valueB.localeCompare(valueA)
       }
-  
+      
       return ascending ? valueA - valueB : valueB - valueA;
     });
   

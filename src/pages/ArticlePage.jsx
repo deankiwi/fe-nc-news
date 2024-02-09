@@ -29,6 +29,9 @@ export function ArticlePage() {
   if (error) {
     return <ErrorComponent error={error} />;
   }
+  //PLAN
+  //useState for the users comment which is blank at start
+  //
 
   return (
     <div>
