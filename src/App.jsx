@@ -6,9 +6,10 @@ import { ArticlePage } from "./pages/ArticlePage";
 import { useState } from "react";
 import { ArticlesPage } from "./pages/ArticlesPage";
 
-//TODO select a random user and use them
+
 //TODO sort out sign in page
 //TODO add in Breadcrumbs
+//TODO get topics from API
 
 function App() {
   const [topics, setTopics] = useState([

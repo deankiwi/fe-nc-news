@@ -28,7 +28,8 @@ export function Navigation({ topics }) {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/user">user</Nav.Link>
-            <NavDropdown title="Articles" id="basic-nav-dropdown">
+            <Nav.Link href="/articles">Articles</Nav.Link>
+            <NavDropdown title="Topics" id="basic-nav-dropdown">
               {topics.map((topic) => {
                 return (
                   <NavDropdown.Item key={topic.slug} href={`/articles?topic=${topic.slug}`}>

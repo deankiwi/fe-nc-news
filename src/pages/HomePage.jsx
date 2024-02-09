@@ -1,10 +1,10 @@
-import { NewsList } from "../components/NewsList";
+import { ArticlesPage } from "./ArticlesPage";
 
 export function HomePage() {
   return (
     <section>
       <h1>Homepage</h1>
-      <NewsList />
+      <ArticlesPage />
     </section>
   );
 }
