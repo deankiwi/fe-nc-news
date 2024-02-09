@@ -59,3 +59,9 @@ export function postComment(article_id, username, body) {
       return Promise.reject(error);
     });
 }
+export function deleteComment(comment_id) {
+  return ncNewsApi.delete(`/comments/${comment_id}`).catch((error) => {
+    console.log(error);
+    return Promise.reject(error);
+  });
+}

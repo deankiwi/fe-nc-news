@@ -32,12 +32,10 @@ export function AddComment({
     }
 
     const newComment = {
-      temp_comment_id: "test",
       votes: 0,
       created_at: new Date().toISOString(),
       author: username,
       body,
-      hasBeenAddedToDatabase: false,
     };
 
     postComment(article_id, username, body)
