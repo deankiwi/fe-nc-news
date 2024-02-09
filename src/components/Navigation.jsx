@@ -8,7 +8,7 @@ import { Image } from "react-bootstrap";
 
 //TODO add link to user avatar to user page
 
-export function Navigation() {
+export function Navigation({ topics }) {
   const { user } = useContext(UserContext);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -29,9 +29,13 @@ export function Navigation() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/user">user</Nav.Link>
             <NavDropdown title="Articles" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/tbc">topic 1</NavDropdown.Item>
-              <NavDropdown.Item href="/tbc">topic 2</NavDropdown.Item>
-              <NavDropdown.Item href="/tbc">topic 3</NavDropdown.Item>
+              {topics.map((topic) => {
+                return (
+                  <NavDropdown.Item key={topic.slug} href={`/articles?topic=${topic.slug}`}>
+                    {topic.slug}
+                  </NavDropdown.Item>
+                );
+              })}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

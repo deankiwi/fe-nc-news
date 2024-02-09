@@ -4,16 +4,20 @@ import { ArticleSummary } from "./ArticleSummary";
 import { Col, Row } from "react-bootstrap";
 import { Loading } from "./Loading";
 import { ErrorComponent } from "./ErrorComponent";
+import { useSearchParams } from "react-router-dom";
 
 //TODO Check articles are coming from newest first
 //TODO Display what filters the user has
 
 export function NewsList() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [articles, setArticles] = useState([]);
   const [isLoadingArticles, setIsLoadingArticles] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
-    getArticles()
+    getArticles(searchParams)
       .then((articlesFetched) => {
         setArticles(articlesFetched);
         setIsLoadingArticles(false);
