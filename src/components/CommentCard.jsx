@@ -5,6 +5,7 @@ import { deleteComment } from "../api/api";
 import { Alert } from "react-bootstrap";
 
 export function CommentCard({ comment }) {
+  //TODO being able to remove comments that have been added by the user straight away without the need to refresh
   const [deleting, setDeleting] = useState(false);
   const [successfullyDeleted, setSuccessfullyDeleted] = useState(null);
   function handleDelete(comment_id) {
