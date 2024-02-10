@@ -1,10 +1,9 @@
 import { Loading } from "./Loading";
 import { fetchComments } from "../api/api";
-import { useQuery } from "react-query";
 import { CommentCard } from "./CommentCard";
 import { sortByKey } from "../utils/sortArray";
 import { AddComment } from "./AddComment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
 
 //TODO looking at changing the formate of the comments created at created_at to time from now
@@ -13,12 +12,22 @@ import { Alert } from "react-bootstrap";
 //TODO if comment fail make box red
 
 export function CommentsList({ article_id }) {
-  const { data, status } = useQuery(["comments", article_id], () => {
-    //TODO BUG fetches data comments when click back onto page making user comment appear twice
+  //TODO BUG fetches data comments when click back onto page making user comment appear twice
 
-    console.log("fetchComments()");
-    return fetchComments(article_id);
-  });
+  const [data, setData] = useState([]);
+  const [status, setStatus] = useState("loading");
+  useEffect(() => {
+    fetchComments(article_id)
+      .then((receivedData) => {
+        console.log("fetchComments()");
+        setData(receivedData);
+        setStatus("success");
+      })
+      .catch((error) => {
+        setStatus("error");
+      });
+  }, []);
+
   const [userComments, setUserComments] = useState([]);
   const [userCommentChecked, setUserCommentChecked] = useState([]);
   const [userCommentFailed, setUserCommentFailed] = useState([]);
