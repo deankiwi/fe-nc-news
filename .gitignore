@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 playground
+# Local Netlify folder
+.netlify

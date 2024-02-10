@@ -6,30 +6,14 @@ import { ArticlePage } from "./pages/ArticlePage";
 import { useState } from "react";
 import { ArticlesPage } from "./pages/ArticlesPage";
 
-
 //TODO sort out sign in page
 //TODO add in Breadcrumbs
 //TODO get topics from API
 
 function App() {
-  const [topics, setTopics] = useState([
-    {
-      slug: "coding",
-      description: "Code is love, code is life",
-    },
-    {
-      slug: "football",
-      description: "FOOTIE!",
-    },
-    {
-      slug: "cooking",
-      description: "Hey good looking, what you got cooking?",
-    },
-  ]);
-
   return (
     <>
-      <Navigation topics={topics} />
+      <Navigation />
       <div className="p-2">
         <Routes>
           <Route path="/" element={<HomePage />} />

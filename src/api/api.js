@@ -72,3 +72,14 @@ export function deleteComment(comment_id) {
     return Promise.reject(error);
   });
 }
+
+export function fetchTopics(article_id) {
+  return ncNewsApi(`/topics`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
+}
