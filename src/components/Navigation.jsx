@@ -1,14 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { UserContext } from "../contexts/User";
 import { Image } from "react-bootstrap";
+import { fetchTopics } from "../api/api";
 
 //TODO add link to user avatar to user page
 
-export function Navigation({ topics }) {
+export function Navigation() {
+  const [topics, setTopics] = useState([]);
+  useEffect(() => {
+    fetchTopics().then(({ topics }) => {
+      setTopics(topics);
+    });
+  }, []);
   const { user } = useContext(UserContext);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -32,7 +39,10 @@ export function Navigation({ topics }) {
             <NavDropdown title="Topics" id="basic-nav-dropdown">
               {topics.map((topic) => {
                 return (
-                  <NavDropdown.Item key={topic.slug} href={`/articles?topic=${topic.slug}`}>
+                  <NavDropdown.Item
+                    key={topic.slug}
+                    href={`/articles?topic=${topic.slug}`}
+                  >
                     {topic.slug}
                   </NavDropdown.Item>
                 );
