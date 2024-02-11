@@ -2,7 +2,6 @@ import { Card } from "react-bootstrap";
 import { utcToDayMonthYear } from "../utils/timeFormatter";
 import { Link } from "react-router-dom";
 
-//TODO add link to card block to take you to article URL
 //TODO add like and comments image
 
 export function ArticleSummary({ article }) {

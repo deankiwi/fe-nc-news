@@ -6,10 +6,8 @@ import { AddComment } from "./AddComment";
 import { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
 
-//TODO looking at changing the formate of the comments created at created_at to time from now
 //TODO drop down menu to allow users to select of they order it
 //TODO break of everything with adding comments into it's own thing
-//TODO if comment fail make box red
 
 export function CommentsList({ article_id }) {
   const [data, setData] = useState([]);

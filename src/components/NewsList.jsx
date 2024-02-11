@@ -7,7 +7,6 @@ import { ErrorComponent } from "./ErrorComponent";
 import { useSearchParams } from "react-router-dom";
 import { sortByKey } from "../utils/sortArray";
 
-//TODO Display what filters the user has
 
 export function NewsList() {
   const [searchParams, setSearchParams] = useSearchParams();
