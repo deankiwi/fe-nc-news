@@ -1,12 +1,16 @@
 import Card from "react-bootstrap/Card";
 import { utcToTimeAgo } from "../utils/timeFormatter";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { deleteComment } from "../api/api";
 import { Alert } from "react-bootstrap";
+import { UserContext } from "../contexts/User";
 
 export function CommentCard({ comment }) {
-  //TODO being able to remove comments that have been added by the user straight away without the need to refresh
   const [deleting, setDeleting] = useState(false);
+  const {
+    user: { username },
+  } = useContext(UserContext);
+
   const [successfullyDeleted, setSuccessfullyDeleted] = useState(null);
   function handleDelete(comment_id) {
     setDeleting(true);
@@ -42,12 +46,14 @@ export function CommentCard({ comment }) {
             </div>
             {comment.hasOwnProperty("comment_id") && (
               <div>
-                <button
-                  disabled={deleting}
-                  onClick={() => handleDelete(comment.comment_id)}
-                >
-                  <small className="text-muted">🗑️</small>
-                </button>
+                {username === comment.author && (
+                  <button
+                    disabled={deleting}
+                    onClick={() => handleDelete(comment.comment_id)}
+                  >
+                    <small className="text-muted">🗑️</small>
+                  </button>
+                )}
               </div>
             )}
           </Card.Footer>
