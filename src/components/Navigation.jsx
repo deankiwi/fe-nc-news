@@ -48,6 +48,7 @@ export function Navigation() {
                 );
               })}
             </NavDropdown>
+            <Nav.Link href="https://github.com/deankiwi/fe-nc-news">Github</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
