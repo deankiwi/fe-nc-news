@@ -14,14 +14,12 @@ export function Users() {
     user: { username },
   } = useContext(UserContext);
 
-  console.log(username);
 
   useEffect(() => {
     fetchUsers()
       .then(({ users }) => {
         setUsers(users);
         setStatus("success");
-        console.log(users);
       })
       .catch(() => {
         setStatus("error");
