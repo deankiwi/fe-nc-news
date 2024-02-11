@@ -3,12 +3,10 @@ import { HomePage } from "./pages/HomePage";
 import { Navigation } from "./components/Navigation";
 import { ErrorPage } from "./pages/ErrorPage";
 import { ArticlePage } from "./pages/ArticlePage";
-import { useState } from "react";
 import { ArticlesPage } from "./pages/ArticlesPage";
+import { UsersPage } from "./pages/UserPage";
 
-//TODO sort out sign in page
 //TODO add in Breadcrumbs
-//TODO get topics from API
 
 function App() {
   return (
@@ -17,6 +15,7 @@ function App() {
       <div className="p-2">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/users" element={<UsersPage />} />
           <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/articles/:article_id" element={<ArticlePage />} />
           <Route path="*" element={<ErrorPage />} />

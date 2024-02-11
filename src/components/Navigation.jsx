@@ -34,7 +34,7 @@ export function Navigation() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/user">user</Nav.Link>
+            <Nav.Link href="/users">Users</Nav.Link>
             <Nav.Link href="/articles">Articles</Nav.Link>
             <NavDropdown title="Topics" id="basic-nav-dropdown">
               {topics.map((topic) => {
@@ -48,6 +48,7 @@ export function Navigation() {
                 );
               })}
             </NavDropdown>
+            <Nav.Link href="https://github.com/deankiwi/fe-nc-news">Github</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

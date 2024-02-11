@@ -7,16 +7,13 @@ import { ErrorComponent } from "./ErrorComponent";
 import { useSearchParams } from "react-router-dom";
 import { sortByKey } from "../utils/sortArray";
 
-//TODO Check articles are coming from newest first
-//TODO Display what filters the user has
 
 export function NewsList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const sort_by = searchParams.get("sort_by");
   const reverseOrder = searchParams.get("reverseOrder");
-  const ascending = reverseOrder === "false" ? false : true;
-
-
+  const ascending = reverseOrder === "true" ? true : false;
+  const author = searchParams.get("author");
   const [articles, setArticles] = useState([]);
   const [isLoadingArticles, setIsLoadingArticles] = useState(true);
   const [error, setError] = useState(null);
@@ -41,7 +38,19 @@ export function NewsList() {
       <h2>Articles</h2>
       <Loading isLoading={isLoadingArticles} loadingDescription="articles" />
       <Row xs={1} sm={2} lg={3} className="g-4">
-        {sortByKey(articles, sort_by, ascending).map((article) => (
+        {sortByKey(
+          articles.filter((article) => {
+            if (!author) {
+              return true;
+            } else if (author === article.author) {
+              return true;
+            } else {
+              return false;
+            }
+          }),
+          sort_by,
+          ascending
+        ).map((article) => (
           <Col key={article.article_id}>
             <ArticleSummary article={article} />
           </Col>

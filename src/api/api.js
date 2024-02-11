@@ -83,3 +83,14 @@ export function fetchTopics(article_id) {
       return Promise.reject(error);
     });
 }
+
+export function fetchUsers(article_id) {
+  return ncNewsApi(`/users`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
+}
