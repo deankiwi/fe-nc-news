@@ -12,14 +12,11 @@ import { Alert } from "react-bootstrap";
 //TODO if comment fail make box red
 
 export function CommentsList({ article_id }) {
-  //TODO BUG fetches data comments when click back onto page making user comment appear twice
-
   const [data, setData] = useState([]);
   const [status, setStatus] = useState("loading");
   useEffect(() => {
     fetchComments(article_id)
       .then((receivedData) => {
-        console.log("fetchComments()");
         setData(receivedData);
         setStatus("success");
       })
@@ -40,31 +37,9 @@ export function CommentsList({ article_id }) {
         setUserComments={setUserComments}
         setUserCommentChecked={setUserCommentChecked}
         setUserCommentFailed={setUserCommentFailed}
-      />{" "}
-      <br />
-      {sortByKey(userComments, "created_at", false).map((comment) => {
-        let boxColour = userCommentChecked.some(
-          (commentThatHaveBeenAddedToDatabase) =>
-            commentThatHaveBeenAddedToDatabase.created_at === comment.created_at
-        )
-          ? "success"
-          : "primary";
-        if (
-          userCommentFailed.some(
-            (commentThatHaveFailedToBeenAddedToDatabase) =>
-              commentThatHaveFailedToBeenAddedToDatabase.created_at ===
-              comment.created_at
-          )
-        ) {
-          boxColour = "danger";
-        }
+        setData={setData}
+      />
 
-        return (
-          <SubmittedComment key={comment.created_at} boxColour={boxColour}>
-            <CommentCard comment={comment} />
-          </SubmittedComment>
-        );
-      })}
       {status === "error" && <p>Error fetching data</p>}
       {status === "loading" && (
         <Loading isLoading={true} loadingDescription={"comments"} />

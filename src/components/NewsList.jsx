@@ -9,6 +9,7 @@ import { sortByKey } from "../utils/sortArray";
 
 //TODO Check articles are coming from newest first
 //TODO Display what filters the user has
+//TODO can only delete own comments
 
 export function NewsList() {
   const [searchParams, setSearchParams] = useSearchParams();

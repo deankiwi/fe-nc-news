@@ -4,32 +4,29 @@ import { UserContext } from "../contexts/User";
 import { postComment } from "../api/api";
 
 //TODO add error handling for when user is not signed in and tries to comment.
-//TODO could be a good idea to disable submit when comment is being added to server incase they try to re write message
 
 export function AddComment({
   article_id,
   setUserComments,
   setUserCommentChecked,
   setUserCommentFailed,
+  setData,
 }) {
   const [body, setBody] = useState("");
-  const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
 
   const {
     user: { username },
   } = useContext(UserContext);
 
   const handleCommentChange = (event) => {
-    setError("");
+    setStatus("");
     setBody(event.target.value);
   };
 
   const handleSubmit = (event) => {
+    setStatus("loading");
     event.preventDefault();
-    if (body.trim() === "") {
-      setError("Comment cannot be empty");
-      return;
-    }
 
     const newComment = {
       votes: 0,
@@ -39,23 +36,18 @@ export function AddComment({
     };
 
     postComment(article_id, username, body)
-      .then(() => {
-        setUserCommentChecked((userCommentChecked) => {
-          return [...userCommentChecked, newComment];
+      .then((responseData) => {
+        setStatus("success");
+        setBody("");
+        setData((currentComments) => {
+          return {
+            comments: [...currentComments.comments, responseData.comments],
+          };
         });
       })
       .catch((error) => {
-        setUserCommentFailed((userCommentFailed) => {
-          return [...userCommentFailed, newComment];
-        });
+        setStatus("error");
       });
-
-    setUserComments((currentUserComments) => {
-      const updatedUserComments = [...currentUserComments, newComment];
-      return updatedUserComments;
-    });
-    setError("");
-    setBody("");
   };
 
   return (
@@ -69,9 +61,17 @@ export function AddComment({
           onChange={handleCommentChange}
         />
       </Form.Group>
-      {error && <Alert variant="danger">{error}</Alert>}
+      {status === "loading" && <Alert variant="info">adding comment...</Alert>}
+      {status === "success" && <Alert variant="success">done</Alert>}
+      {status === "error" && (
+        <Alert variant="danger">failed to add comment</Alert>
+      )}
 
-      <Button variant="primary" type="submit">
+      <Button
+        disabled={status === "loading" || body.length === 0}
+        variant="primary"
+        type="submit"
+      >
         Submit
       </Button>
     </Form>
