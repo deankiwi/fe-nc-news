@@ -1,5 +1,7 @@
 # NC NEWS
 
+To see working site visit: https://deanncnews.netlify.app/
+
 #WORK IN PROGRESS
 
 to run:
