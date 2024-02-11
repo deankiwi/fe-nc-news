@@ -5,13 +5,7 @@ import { postComment } from "../api/api";
 
 //TODO add error handling for when user is not signed in and tries to comment.
 
-export function AddComment({
-  article_id,
-  setUserComments,
-  setUserCommentChecked,
-  setUserCommentFailed,
-  setData,
-}) {
+export function AddComment({ article_id, setData }) {
   const [body, setBody] = useState("");
   const [status, setStatus] = useState("");
 
@@ -27,13 +21,6 @@ export function AddComment({
   const handleSubmit = (event) => {
     setStatus("loading");
     event.preventDefault();
-
-    const newComment = {
-      votes: 0,
-      created_at: new Date().toISOString(),
-      author: username,
-      body,
-    };
 
     postComment(article_id, username, body)
       .then((responseData) => {
