@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 //TODO add like and comments image
 
 export function ArticleSummary({ article }) {
-  return (
+return (
     <Card>
       <Card.Body>
         <Link to={`/articles/${article.article_id}`}>
@@ -19,10 +19,21 @@ export function ArticleSummary({ article }) {
       </Card.Body>
       <Card.Footer style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
-          <small className="text-muted">By: {article.author}</small>
+          <small className="text-muted">
+            By:
+            <Card.Link href={`/articles?author=${article.author}`}>
+            {article.author}
+            </Card.Link>
+            
+          </small>
         </div>
         <div>
-          <small className="text-muted">Topic: {article.topic}</small>
+          <small className="text-muted">
+            Topic:
+            <Card.Link href={`/articles?topic=${article.topic}`}>
+              {article.topic}
+            </Card.Link>
+          </small>
         </div>
         <div>
           <small className="text-muted">Votes: {article.votes}</small>

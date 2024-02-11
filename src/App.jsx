@@ -8,7 +8,7 @@ import { ArticlesPage } from "./pages/ArticlesPage";
 
 //TODO sort out sign in page
 //TODO add in Breadcrumbs
-//TODO get topics from API
+//TODO add link to github repo in nav bar
 
 function App() {
   return (
