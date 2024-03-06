@@ -27,7 +27,7 @@ Before getting started, ensure you have the following software installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/deankiwi/nc-news
+    git clone https://github.com/deankiwi/fe-nc-news
     ```
 
 2. Change into the project directory:
